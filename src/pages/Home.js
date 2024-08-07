@@ -27,7 +27,6 @@ class Home extends Component {
                     З найкращими побажаннями,
                     Команда вашого магазину риболовних снастей
                 </p>
-                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9th7wNZnRCQ3-1gZ14DajsgjnolMAnmnW9A&s'></img>
             </div>
         );
     }
