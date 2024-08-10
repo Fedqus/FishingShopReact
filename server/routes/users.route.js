@@ -1,40 +1,10 @@
-/* const express = require('express');
-const router = express.Router();
-const User = require('../models/user.model');
-
-
-router.post('/reg', (req, res) => {
-    const {name, surname} = req.body;
-
-    const user = new User ({
-        name,
-        surname
-    })
-    user.save();
-    return res.status(201).send({messsage:"User created"});
-
-})
-
-router.get('/get', async (req, res) => {
-    try {
-        const users = await User.find(); // Дочекатися завершення запиту
-        return res.status(200).json(users); // Відправити результат у форматі JSON
-    } catch (error) {
-        console.error(error.message); // Логування помилок
-        return res.status(500).json({ error: 'Server Error' });
-    }
-});
-
-
-module.exports = router; */
-
 const express = require('express');
 const { check } = require('express-validator');
 const router = new express.Router();
-const userController = require('../controllers/user.controller');
+const userController = require('../controllers/User.controller');
 
 router.get('/all', userController.getUsers);
-/* router.get('/:id', userController.getUserById); */
+router.get('/:id', userController.getUserById);
 
 router.post('/reg', [
     check('name', 'Name can\'t be empty!').notEmpty(),

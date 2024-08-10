@@ -8,17 +8,17 @@ import Button from 'react-bootstrap/Button';
 class Header extends Component {
     render() {
         return (
-            <Navbar bg="light" data-bs-theme="light" expand="lg">
-                <Container>
-                    <Navbar.Brand href="">Fishing Shop</Navbar.Brand>
+            <Navbar className="bg-body-tertiary" sticky="top" expand="lg">
+                <Container className="mt-auto">
+                    <Navbar.Brand href="/">Fishing Shop</Navbar.Brand>
                     <Navbar.Toggle/>
                     <Navbar.Collapse className="justify-content-between">
                         <Nav>
-                            <Nav.Link href="">Home</Nav.Link>
+                            <Nav.Link href="/">Home</Nav.Link>
                         </Nav>
                         <Nav className="d-flex gap-2">
-                            <Button>Login</Button>
-                            <Button>Sign Up</Button>
+                            <Button href="/login">Login</Button>
+                            <Button href="/signup">Sign Up</Button>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

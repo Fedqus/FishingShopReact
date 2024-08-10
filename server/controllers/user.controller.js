@@ -1,10 +1,10 @@
-const User = require('../models/user.model');
-const Role = require('../models/role.model');
+const User = require('../models/User.model');
+const Role = require('../models/Role.model');
 const bcrypt = require('bcryptjs');
 
 const { validationResult } = require('express-validator');
 
-class userController {
+class UserController {
 
     async registerUser(req, res) {
         try {
@@ -64,7 +64,7 @@ class userController {
         }
     }
 
-    /* async getUserById(req, res, next) {
+    async getUserById(req, res, next) {
         const id = req.params.id;
         try {
             const user = await User.findById(id, { __v: 0, password: 0, accessToken: 0 });
@@ -77,7 +77,7 @@ class userController {
             console.log(error.message);
             res.status(400).json({ message: 'Get user error' });
         }
-    } */
+    }
 
     async updateUser(req, res, next) {
         try {
@@ -99,4 +99,4 @@ class userController {
     }
 }
 
-module.exports = new userController();
+module.exports = new UserController();
