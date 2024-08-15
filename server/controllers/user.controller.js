@@ -1,6 +1,21 @@
 const User = require('../models/User.model');
 const Role = require('../models/Role.model');
+
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+require('dotenv').config();
+const secret = process.env.SECRET;
+
+const generateAccessToken = (roles, name, phone, email) => {
+    const payload = {
+        roles,
+        name,
+        phone,
+        email
+    };
+    return jwt.sign(payload, secret, { expiresIn: '24h' });
+};
 
 const { validationResult } = require('express-validator');
 
@@ -29,7 +44,7 @@ class UserController {
             });
 
             await user.save();
-            return res.status(201).json({ message: 'User created!', user});
+            return res.status(201).json({ message: 'Registration success!'});
         } catch (err) {
             console.log(err.message);
             res.status(400).json({ message: 'Registration error!' });
@@ -47,7 +62,10 @@ class UserController {
             if (!validPassword) {
                 return res.status(400).json({ message: 'Invalid password!' });
             }
-            return res.json({ message: 'Login successes!' });
+
+            const token = generateAccessToken(user.roles, user.name, user.phone, user.email);
+
+            return res.status(201).json({ message: 'Login success!', token });
         } catch (error) {
             console.log(error.message);
             res.status(400).json({ message: 'Login error!' });

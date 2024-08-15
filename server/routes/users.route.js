@@ -1,9 +1,12 @@
 const express = require('express');
 const { check } = require('express-validator');
 const router = new express.Router();
-const userController = require('../controllers/User.controller');
+const userController = require('../controllers/user.controller');
 
-router.get('/all', userController.getUsers);
+const roleMiddleware = require('../middleware/role.middleware');
+const userMiddleware = require('../middleware/user.middleware');
+
+router.get('/all', roleMiddleware(['ADMIN']), userController.getUsers);
 router.get('/:id', userController.getUserById);
 
 router.post('/reg', [
