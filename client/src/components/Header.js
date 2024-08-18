@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
+import HeaderAccount from "./HeaderAccount";
 
 class Header extends Component {
     render() {
@@ -11,15 +11,12 @@ class Header extends Component {
             <Navbar className="bg-body-tertiary" sticky="top" expand="lg">
                 <Container className="mt-auto">
                     <Navbar.Brand href="/">Fishing Shop</Navbar.Brand>
-                    <Navbar.Toggle/>
+                    <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-between">
                         <Nav>
                             <Nav.Link href="/">Home</Nav.Link>
                         </Nav>
-                        <Nav className="d-flex gap-2">
-                            <Button href="/login">Login</Button>
-                            <Button href="/signup">Sign Up</Button>
-                        </Nav>
+                        <HeaderAccount />
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

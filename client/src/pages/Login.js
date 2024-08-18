@@ -1,66 +1,60 @@
 import React, { Component } from 'react';
-import axios from '../api/axios'
-
+import axios from '../api/axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Stack from 'react-bootstrap/Stack';
 import { withAlertMessagesStore } from '../stores/AlertMessagesStore';
+import { withAuthStore } from '../stores/AuthStore';
 
-class SignUp extends Component {
+class Login extends Component {
+
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         console.log(this.state)
-        const data = new FormData(e.target)
-        
-        axios.post("/users/reg", {
-            name: data.get("name"),
+        const data = new FormData(e.target);
+
+        axios.post("/users/login", {
             email: data.get("email"),
             password: data.get("password"),
-            phone: data.get("phone")
         })
         .then(res => {
-            const successMessage = res.data?.message || res.message || 'A message occurred';
+            const successMessage = res.data?.message || 'Login successful!';
             this.state.alertMessagesStore.addMessage(successMessage, "success");
-            window.location.href = "/login"
+            this.state.authStore.login(res.data?.token);
+            window.location.href = "/";
         })
         .catch(err => {
-            const errorMessage = err.response?.data?.message || err.message || 'An error occurred';
+            const errorMessage = err.response?.data?.message || 'Login failed!';
             this.state.alertMessagesStore.addMessage(errorMessage, "danger");
-        })
+        });
     }
 
     render() {
         return (
             <div className='d-flex justify-content-center'>
                 <div style={{ width: "450px" }}>
-                    <h1 className='text-center'>Sign Up</h1>
+                    <h1 className='text-center'>Login</h1>
                     <Form className='mt-3' onSubmit={this.handleSubmit}>
                         <Stack gap={3}>
-                            <FloatingLabel label="Name">
-                                <Form.Control name="name" type="text" placeholder="Name" />
-                            </FloatingLabel>
                             <FloatingLabel label="Email">
                                 <Form.Control name="email" type="text" placeholder="Email" />
-                            </FloatingLabel>
-                            <FloatingLabel label="Phone">
-                                <Form.Control name="phone" type="text" placeholder="Phone" />
                             </FloatingLabel>
                             <FloatingLabel label="Password">
                                 <Form.Control name="password" type="password" placeholder="Password" />
                             </FloatingLabel>
-                            <Button type='submit' variant='success' className='w-100'>Confirm</Button>
+                            <Button type='submit' variant='success' className='w-100'>Login</Button>
                         </Stack>
                     </Form>
                 </div>
             </div>
-        )
+        );
     }
 }
 
-export default withAlertMessagesStore(SignUp);
+export default withAuthStore(withAlertMessagesStore(Login));

@@ -6,7 +6,6 @@ import CloseButton from 'react-bootstrap/CloseButton';
 class AlertMessage extends Component {
     constructor(props) {
         super(props);
-
         this.remove = this.remove.bind(this);
     }
 
@@ -15,13 +14,13 @@ class AlertMessage extends Component {
             this.remove();
         }, 5000);
     }
-
+    
     componentWillUnmount() {
         clearTimeout(this.timer);
     }
-
+    
     remove() {
-        this.props.onRemove();
+        this.props.onRemove()
     }
 
     render() {
