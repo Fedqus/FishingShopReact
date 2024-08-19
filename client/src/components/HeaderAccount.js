@@ -6,15 +6,16 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 import { withAuthStore } from '../stores/AuthStore'
+import AdminDropdownItems from './AdminDropdownItems';
 
 class HeaderAccount extends Component {
     constructor(props) {
         super(props);
-        this.logout = this.logout.bind(this)
+        this.handleLogout = this.handleLogout.bind(this)
     }
 
-    logout() {
-        this.state.authStore.logout()
+    handleLogout() {
+        this.state.authStore.removeToken()
     }
 
     render() {
@@ -23,7 +24,8 @@ class HeaderAccount extends Component {
                 ?
                 <Nav className="d-flex gap-2">
                     <DropdownButton title={this.state.authStore.user.name}>
-                        <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>
+                        <AdminDropdownItems />
+                        <Dropdown.Item onClick={this.handleLogout}>Logout</Dropdown.Item>
                     </DropdownButton>
                 </Nav>
                 :

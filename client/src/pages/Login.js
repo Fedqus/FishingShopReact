@@ -26,7 +26,7 @@ class Login extends Component {
         .then(res => {
             const successMessage = res.data?.message || 'Login successful!';
             this.state.alertMessagesStore.addMessage(successMessage, "success");
-            this.state.authStore.login(res.data?.token);
+            this.state.authStore.setToken(res.data?.token);
             window.location.href = "/";
         })
         .catch(err => {

@@ -42,8 +42,8 @@ class SignUp extends Component {
                     <h1 className='text-center'>Sign Up</h1>
                     <Form className='mt-3' onSubmit={this.handleSubmit}>
                         <Stack gap={3}>
-                            <FloatingLabel label="Name">
-                                <Form.Control name="name" type="text" placeholder="Name" />
+                            <FloatingLabel label="Full name">
+                                <Form.Control name="name" type="text" placeholder="Full name" />
                             </FloatingLabel>
                             <FloatingLabel label="Email">
                                 <Form.Control name="email" type="text" placeholder="Email" />

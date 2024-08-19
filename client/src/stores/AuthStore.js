@@ -11,15 +11,17 @@ const getTokenData = () => {
     }
     return null;
 }
+
 const useAuthStore = create((set, get) => ({
     user: getTokenData(),
-    login: (token) => set(() => {
+    token: localStorage.getItem(storageKey),
+    setToken: (token) => set(() => {
         localStorage.setItem(storageKey, token);
-        return { user: getTokenData() }
+        return { user: getTokenData(), token: token }
     }),
-    logout: () => set(() => {
+    removeToken: () => set(() => {
         localStorage.removeItem(storageKey);
-        return { user: getTokenData() }
+        return { user: getTokenData(), token: null }
     }),
     isValid: () => {
         if (!get().user) {

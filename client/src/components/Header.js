@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import HeaderAccount from "./HeaderAccount";
+import NavLinks from "./NavLinks";
 
 class Header extends Component {
     render() {
@@ -13,9 +13,7 @@ class Header extends Component {
                     <Navbar.Brand href="/">Fishing Shop</Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-between">
-                        <Nav>
-                            <Nav.Link href="/">Home</Nav.Link>
-                        </Nav>
+                        <NavLinks />
                         <HeaderAccount />
                     </Navbar.Collapse>
                 </Container>
