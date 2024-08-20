@@ -5,6 +5,7 @@ const cors = require('cors')
 require('dotenv').config();
 
 const userRouter = require('./routes/users.route');
+const productsRouter = require('./routes/products.route');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 app.use('/users', userRouter);
+app.use('/products', productsRouter);
 
 const start = async () => {
     try {
