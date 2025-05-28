@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ModalWindow from "./components/ModalWindow";
 import AlertMessageContainer from "./components/AlertMessageContainer";
 
 import Home from "./pages/Home";
@@ -13,6 +14,7 @@ import NotFound from "./pages/Errors/NotFound";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
+import Shop from "./pages/Shop";
 
 class App extends Component {
     render() {
@@ -20,10 +22,12 @@ class App extends Component {
             <div className="d-flex flex-column min-vh-100">
                 <BrowserRouter>
                     <Header />
+                    <ModalWindow />
                     <AlertMessageContainer />
                     <Container className="mt-3">
                         <Routes>
                             <Route path="" element={<Home />} />
+                            <Route path="/shop" element={<Shop />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/signup" element={<SignUp />} />
                             <Route path="/dashboard" element={<Dashboard />} />

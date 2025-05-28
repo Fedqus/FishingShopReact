@@ -15,7 +15,6 @@ class SignUp extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        console.log(this.state)
         const data = new FormData(e.target)
         
         axios.post("/users/reg", {
@@ -30,7 +29,7 @@ class SignUp extends Component {
             window.location.href = "/login"
         })
         .catch(err => {
-            const errorMessage = err.response?.data?.message || err.message || 'An error occurred';
+            const errorMessage = err.response?.data?.errors.errors.pop().msg || err.response?.data?.message || err.message || 'An error occurred';
             this.state.alertMessagesStore.addMessage(errorMessage, "danger");
         })
     }

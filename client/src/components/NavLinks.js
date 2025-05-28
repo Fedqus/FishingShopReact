@@ -8,7 +8,8 @@ class NavLinks extends Component {
     constructor(props) {
         super(props);
         this.links = [
-            { href: '/', title: 'Home' }
+            { href: '/', title: 'Home' },
+            { href: '/shop', title: 'Shop' }
         ]
     }
     render() {
